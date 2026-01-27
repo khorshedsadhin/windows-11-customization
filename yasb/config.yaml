@@ -1,0 +1,196 @@
+# YASB Configuration - Boxy Workspaces & Professional Polish
+watch_stylesheet: true
+watch_config: true
+debug: false
+update_check: true
+
+komorebi:
+  start_command: "komorebic start --whkd"
+  stop_command: "komorebic stop --whkd"
+  reload_command: "komorebic stop --whkd && komorebic start --whkd"
+
+bars:
+  primary-bar:
+    enabled: true
+    screens: ["primary"]
+    class_name: "yasb-bar"
+    alignment:
+      position: "top"
+      center: false
+    animation:
+      enabled: true
+      duration: 400
+    blur_effect:
+      enabled: true
+      acrylic: false
+      dark_mode: true
+      round_corners: true
+      round_corners_type: "normal"
+      border_color: "System"
+    window_flags:
+      always_on_top: false
+      windows_app_bar: true
+    dimensions:
+      width: "100%"
+      height: 36
+    padding:
+      top: 4
+      left: 6
+      bottom: 0
+      right: 6
+    widgets:
+      left: [
+        "glazewm_workspaces", 
+        "active_window" 
+      ]
+      center: [
+        "clock"
+      ]
+      right: [
+        "pomodoro",
+        "notes",
+        "microphone",
+        "volume",
+        "notifications",
+        "power_menu"
+      ]
+
+widgets:
+  # --- LEFT WIDGETS ---
+  glazewm_workspaces:
+    type: "glazewm.workspaces.GlazewmWorkspacesWidget"
+    options:
+      offline_label: "Offline"
+      hide_if_offline: true
+      # UPDATED: Use "{name}" to show numbers (1, 2, 3)
+      populated_label: "{name}"
+      empty_label: "{name}"
+      active_populated_label: "{name}"
+      active_empty_label: "{name}"
+      
+      hide_empty_workspaces: true
+      glazewm_server_uri: "ws://localhost:6123"
+      enable_scroll_switching: true
+      reverse_scroll_direction: true
+
+  active_window:
+    type: "yasb.active_window.ActiveWindowWidget"
+    options:
+      label: "{win[title]}"
+      label_alt: "{win[process][name]}"
+      label_no_window: "Desktop"
+      label_icon: true
+      label_icon_size: 14
+      max_length: 50
+      max_length_ellipsis: "..."
+      monitor_exclusive: true
+
+  # --- CENTER WIDGETS ---
+  clock:
+    type: "yasb.clock.ClockWidget"
+    options:
+      label: "{%A, %d %B %I:%M %p}"
+      label_alt: "{%A, %d %B}"
+      timezones: []
+      callbacks:
+        on_left: "toggle_calendar"
+      calendar:
+        blur: true
+        round_corners: true
+
+  # --- RIGHT WIDGETS ---
+  pomodoro:
+    type: "yasb.pomodoro.PomodoroWidget"
+    options:
+      label: "<span>{icon}</span> {remaining}"
+      work_duration: 50
+      break_duration: 10
+      long_break_duration: 30
+      icons:
+        work: "\uf252"
+        break: "\uf253"
+        paused: "\uf254"
+      callbacks:
+        on_left: "toggle_menu"
+        on_middle: "reset_timer"
+        
+  notes:
+    type: "yasb.notes.NotesWidget"
+    options:
+      label: "<span>\udb82\udd0c</span>{count}" 
+      label_alt: "{count} notes"
+      menu:
+        blur: true
+        round_corners: true
+        round_corners_type: "normal"
+        border_color: "System"
+        alignment: "right"
+        direction: "down"
+        offset_top: 6
+        offset_left: 0
+        max_title_size: 150
+        show_date_time: true
+      icons:
+        note: "\udb82\udd0c"
+        delete: "\ueab8"
+        copy: "\uebcc"
+      callbacks:
+        on_left: "toggle_menu"
+        on_right: "toggle_label"
+      label_shadow:
+        enabled: false
+
+  volume:
+    type: "yasb.volume.VolumeWidget"
+    options:
+      label: "<span>{icon}</span> {level}"
+      label_alt: "{volume}"
+      volume_icons:
+        - "\ueee8"
+        - "\uf026"
+        - "\uf027"
+        - "\uf027"
+        - "\uf028"
+      callbacks:
+        on_left: "toggle_mute"
+        on_right: "exec cmd.exe /c start ms-settings:sound"
+
+  microphone:
+    type: "yasb.microphone.MicrophoneWidget"
+    options:
+      label: "<span>{icon}</span>"
+      label_alt: "{level}%"
+      icons:
+        normal: "\uf130"
+        muted: "\uf131"
+      callbacks:
+        on_left: "toggle_mute"
+
+  notifications:
+    type: "yasb.notifications.NotificationsWidget"
+    options:
+      label: "<span>\uf476</span> {count}"
+      label_alt: "No Notifications"
+      hide_empty: true
+      callbacks:
+        on_left: "toggle_notification"
+
+  power_menu:
+    type: "yasb.power_menu.PowerMenuWidget"
+    options:
+      label: "\uf011"
+      uptime: true
+      blur: true
+      blur_background: true
+      animation_duration: 200
+      button_row: 3
+      buttons:
+        lock: ["\uea75", "Lock"]
+        sleep: ["\u23fe","Sleep"]
+        signout: ["\udb80\udf43", "Log Out"]
+        hibernate: ["\uf28e", "Hibernate"]
+        restart: ["\uead2", "Restart"]
+        shutdown: ["\uf011", "Shut Down"]
+        cancel: ["", "Cancel"]
+      label_shadow:
+        enabled: false

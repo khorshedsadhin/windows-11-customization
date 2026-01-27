@@ -1,0 +1,270 @@
+/* --- GLOBAL --- */
+* {
+    font-size: 13px;
+    font-weight: 600;
+    font-family: "JetBrainsMono NFP"; 
+    color: #cdd6f4;
+    margin: 0;
+    padding: 0;
+}
+
+.yasb-bar {
+    background-color: #1e1e2e;
+    border-radius: 10px;
+    padding: 0 6px;
+    border: 1px solid #313244;
+}
+
+/* --- UNIVERSAL WIDGET STYLING --- */
+.widget {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    padding: 0 8px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.widget:hover {
+    background-color: #313244;
+}
+
+.widget span, .widget .icon {
+    font-size: 16px;
+    margin-right: 6px;
+    padding: 0;
+    display: block;
+    line-height: 1;
+}
+
+/* --- LEFT SIDE --- */
+.glazewm-workspaces {
+    background-color: #181825;
+    padding: 2px 6px; /* Added slight vertical padding for the background */
+    margin-right: 4px;
+    border-radius: 8px; /* Smooth container corners */
+}
+
+.glazewm-workspaces .ws-btn {
+    font-size: 14px;
+    padding: 0 8px; /* Wider padding for a better clickable area */
+    color: #585b70;
+    background-color: transparent;
+    border: none;
+    border-radius: 4px; /* Rounded corners for the hover/active state */
+    margin: 0 1px; /* Tiny space between numbers */
+    transition: all 0.2s ease;
+}
+
+/* --- THE CHANGE: ACTIVE WORKSPACE --- */
+/* This makes the current one a solid colored 'pill' */
+.glazewm-workspaces .ws-btn.active_populated,
+.glazewm-workspaces .ws-btn.active_empty { 
+    color: #1e1e2e;            /* Dark text for contrast */
+    background-color: #cba6f7; /* Mauve Background */
+    font-weight: 800;          /* Extra Bold */
+    box-shadow: 0 0 10px rgba(203, 166, 247, 0.4); /* Glow effect */
+}
+
+/* Occupied but not active (Blue text) */
+.glazewm-workspaces .ws-btn.populated { 
+    color: #89b4fa; 
+}
+
+/* Hover Effect */
+.glazewm-workspaces .ws-btn:hover { 
+    background-color: #313244; /* Dark grey background on hover */
+    color: #cdd6f4; 
+}
+
+/* Active Window Pill */
+.active-window-widget {
+    background-color: #313244;
+    border: 1px solid #45475a;
+    padding: 0 12px;
+    min-width: 100px;
+}
+.active-window-widget .label {
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* --- CENTER --- */
+.clock-widget { font-weight: 700; color: #fab387; }
+.pomodoro-widget .label { color: #a6e3a1; }
+.pomodoro-widget .label.break { color: #89b4fa; }
+
+/* --- RIGHT SIDE --- */
+.notes-widget .label { color: #f5c2e7; }
+.volume-widget .label { color: #89b4fa; }
+.microphone-widget .label { color: #f9e2af; }
+.notifications-widget .label { color: #fab387; }
+
+/* --- POWER BUTTON (Bar) --- */
+.power-menu-widget {
+    background-color: #f38ba8;
+    margin-left: 8px;
+    padding: 0 8px;
+}
+.power-menu-widget .label {
+    color: #11111b;
+    font-size: 16px;
+}
+.power-menu-widget:hover {
+    background-color: #d20f39;
+    color: white;
+}
+.power-menu-widget:hover .label {
+    color: white;
+}
+
+/* --- POWER MENU POPUP --- */
+.power-menu-popup {
+    background-color: #11111b;
+    border: 2px solid #45475a;
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    /* Ensure flex context for wrapping */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 320px; /* Force a consistent width for the popup */
+}
+
+.uptime {
+    width: 100%; /* Force full width */
+    text-align: center;
+    color: #bac2de;
+    font-size: 11px;
+    margin-bottom: 12px;
+    font-family: "JetBrainsMono NFP";
+    opacity: 0.9;
+    font-weight: 700;
+}
+
+.power-menu-popup .button {
+    width: 90px;
+    height: 90px;
+    border-radius: 10px;
+    background-color: #313244; 
+    margin: 5px;
+    border: 1px solid #45475a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.power-menu-popup .button:hover {
+    background-color: #45475a;
+    border-color: #cdd6f4;
+    cursor: pointer;
+}
+
+.power-menu-popup .button .icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+    opacity: 1;
+}
+
+.power-menu-popup .button .label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #cdd6f4;
+}
+
+/* Button Colors */
+.power-menu-popup .button.shutdown .icon { color: #ff8080; }
+.power-menu-popup .button.restart .icon { color: #ffbd5e; }
+.power-menu-popup .button.sleep .icon { color: #89b4fa; }
+.power-menu-popup .button.lock .icon { color: #f9e2af; }
+.power-menu-popup .button.signout .icon { color: #cba6f7; }
+.power-menu-popup .button.hibernate .icon { color: #94e2d5; }
+
+/* Cancel Button - FIXED ALIGNMENT */
+.power-menu-popup .button.cancel {
+    /* Use calc(100% - margins) to span full width correctly */
+    width: calc(100% - 10px); 
+    height: 50px;
+    
+    /* Centering content */
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    
+    background-color: #1e1e2e;
+    border: 1px solid #f38ba8;
+    color: #f38ba8;
+}
+
+.power-menu-popup .button.cancel:hover {
+    background-color: #f38ba8;
+    color: #11111b;
+}
+
+.power-menu-popup .button.cancel .icon {
+    font-size: 14px;
+    margin: 0;
+    margin-right: 8px; /* Space between icon and text */
+}
+
+/* --- NOTES MENU --- */
+.notes-menu {
+    background-color: #1e1e2e;
+    border: 2px solid #45475a;
+    border-radius: 12px;
+    padding: 12px;
+    min-width: 300px;
+}
+
+.notes-menu .note-input {
+    background-color: #181825;
+    border: 1px solid #45475a;
+    border-radius: 6px;
+    color: #cdd6f4;
+    max-height: 30px;
+    padding: 8px;
+    font-family: "JetBrainsMono NFP";
+    margin-bottom: 10px;
+}
+
+.notes-menu .note-input:focus {
+    border: 1px solid #cba6f7;
+    outline: none;
+}
+
+.notes-menu .note-item {
+    background-color: #313244;
+    border-radius: 6px;
+    padding: 8px;
+    margin-bottom: 6px;
+    border-left: 3px solid #89b4fa;
+}
+
+.notes-menu .title {
+    font-weight: 700;
+    color: #cdd6f4;
+    font-size: 13px;
+}
+
+.notes-menu .date {
+    color: #9399b2;
+    font-size: 10px;
+    margin-top: 2px;
+}
+
+.notes-menu .add-button {
+    background-color: #a6e3a1;
+    color: #1e1e2e;
+    border-radius: 4px;
+    padding: 6px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 4px;
+}
+.notes-menu .add-button:hover {
+    background-color: #94e2d5;
+}
