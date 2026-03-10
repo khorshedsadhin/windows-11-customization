@@ -1,0 +1,59 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+  // ── Normal mode remaps ──
+  {
+    "context": "vim_mode == normal",
+    "bindings": {
+      // F → ^ (first non-whitespace)
+      "shift-f": ["workspace::SendKeystrokes", "^"],
+      // : → $ (end of line) — NOTE: this disables vim command mode via ":"
+      ":": ["workspace::SendKeystrokes", "$"],
+      // Shift-H / Shift-L → prev/next buffer tab
+      "shift-h": "pane::ActivatePreviousItem",
+      "shift-l": "pane::ActivateNextItem",
+      // Shift-J / Shift-K → move line down/up
+      "shift-j": "editor::MoveLineDown",
+      "shift-k": "editor::MoveLineUp",
+      // <leader>f → file finder (quick open)
+      "space f": "file_finder::Toggle",
+      // <leader>e → toggle sidebar (project panel is docked right)
+      "space e": "workspace::ToggleLeftDock",
+      // <leader>h → focus left pane
+      "space h": "workspace::ActivatePaneLeft",
+      // <leader>l → focus right pane
+      "space l": "workspace::ActivatePaneRight",
+      // <leader>z → scroll current line near top (zt then 5 lines down)
+      "space z": ["workspace::SendKeystrokes", "z t 5 ctrl-y"]
+    }
+  },
+
+  // ── Visual mode remaps ──
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      "shift-f": ["workspace::SendKeystrokes", "^"],
+      ":": ["workspace::SendKeystrokes", "$"],
+      "shift-j": "editor::MoveLineDown",
+      "shift-k": "editor::MoveLineUp"
+    }
+  },
+
+  // ── Pass-through keys (Ctrl combos bypass vim, same as your VS Code setup) ──
+  {
+    "context": "vim_mode == normal || vim_mode == visual || vim_mode == insert",
+    "bindings": {
+      "ctrl-c": "editor::Copy",
+      "ctrl-v": "editor::Paste",
+      "ctrl-x": "editor::Cut",
+      "ctrl-a": "editor::SelectAll",
+      "ctrl-f": "buffer_search::Deploy",
+      "ctrl-j": "workspace::ToggleBottomDock"
+    }
+  }
+]
