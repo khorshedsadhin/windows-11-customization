@@ -1,0 +1,15 @@
+{
+  "tab_size": 2,
+  "format_on_save": "off",
+  "lsp": {
+    "clangd": {
+      "binary": {
+        "path": "C:/msys64/ucrt64/bin/clangd.exe",
+        "arguments": [
+          "--query-driver=C:/msys64/ucrt64/bin/g++.exe",
+          "--compile-commands-dir=."
+        ]
+      }
+    }
+  }
+}

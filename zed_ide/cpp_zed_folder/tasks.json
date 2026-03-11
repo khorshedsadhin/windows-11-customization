@@ -1,0 +1,16 @@
+[
+  {
+    "label": "C++: Build & Run",
+    "command": "g++ -std=c++17 -Wall -o \"$ZED_STEM.exe\" \"$ZED_FILE\"; if ($LASTEXITCODE -eq 0) { & \".\\$ZED_STEM.exe\" }",
+    "reveal": "always",
+    "tags": ["cpp-run"]
+  },
+
+  {
+    "label": "CP: Build & Run",
+    "command": "cmd /c \"cd /d $ZED_WORKTREE_ROOT && C:/msys64/ucrt64/bin/g++.exe -std=c++17 -O2 -Wall -DLOCAL $ZED_FILE -o sol.exe && sol.exe < input.txt > output.txt\"",
+    "reveal": "never",
+    "use_new_terminal": false,
+    "allow_concurrent_runs": false
+  }
+]
