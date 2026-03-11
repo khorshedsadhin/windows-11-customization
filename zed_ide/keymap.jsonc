@@ -55,5 +55,12 @@
       "ctrl-f": "buffer_search::Deploy",
       "ctrl-j": "workspace::ToggleBottomDock"
     }
+  },
+
+  // ── Run C++ ──
+  {
+    "bindings": {
+      "ctrl-alt-n": ["task::Spawn", { "task_name": "C++: Build & Run" }]
+    }
   }
 ]
